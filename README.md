@@ -5,6 +5,7 @@ SingleClass basic use
 SingleClass的最基本使用。
 
 
+### 添加了RunLoop 相关知识。使用分类添加属性、方法、拦截替换方法。
 Run Time 运行时：
 记录一个网站：[Mehtod  Swizzling](http://nshipster.com/method-swizzling/) 
 
@@ -20,3 +21,5 @@ enum {
         OBJC_ASSOCIATION_COPY = 01403         // 等价于 @property (atomic, copy)
 };
 ```
+
+
