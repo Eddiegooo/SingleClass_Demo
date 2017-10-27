@@ -10,6 +10,7 @@ Run Time 运行时：
 记录一个网站：[Mehtod  Swizzling](http://nshipster.com/method-swizzling/) 
 
 [分类添加属性](http://nszzy.me/2016/01/25/associated-objects/)
+[参考文章](http://blog.leichunfeng.com/blog/2015/06/26/objective-c-associated-objects-implementation-principle/)
 
 
 ```
