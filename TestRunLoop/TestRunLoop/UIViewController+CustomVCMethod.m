@@ -67,7 +67,8 @@ static NSString *myKey = @"myKey";
     NSLog(@"mystring = %@", self.myString);
     
     /*!
-     *  @brief 系统调用UIViewController的viewDidLoad方法时，实际上执行的是我们实现的customViewDidLoad方法。而我们在CustomVCMethod ViewDidLoad方法内部调用[self customViewDidLoad];时，执行的是UIViewController的viewDidLoad方法。
+     *  @brief 系统调用UIViewController的viewDidLoad方法时，实际上执行的是我们实现的customViewDidLoad方法。
+     *  而我们在CustomVCMethod ViewDidLoad方法内部调用[self customViewDidLoad];时，执行的是UIViewController的viewDidLoad方法。
      */
     [self customViewDidLoad];
 }
@@ -84,7 +85,9 @@ static NSString *myKey = @"myKey";
     return objc_getAssociatedObject(self, &myKey);
 }
 
-
+/**
+ 感觉这个方法更巧妙一些，注意第二个参数key。。。这样就不用定义那个不变的key了。。。
+*/
 //getter
 - (UIButton *)hideButton {
     UIButton *_hideButton = objc_getAssociatedObject(self, _cmd);
@@ -99,7 +102,7 @@ static NSString *myKey = @"myKey";
     return _hideButton;
 }
 
-//setter
+//setter  第二个参数哈 。。。。
 - (void)setHideButton:(UIButton *)hideButton {
     objc_setAssociatedObject(self, @selector(hideButton), hideButton, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -122,12 +125,25 @@ static NSString *myKey = @"myKey";
     objc_setAssociatedObject(self, &addStringKey, addString, OBJC_ASSOCIATION_COPY);
 }
 
-- (void)setImageView:(UIImageView *)imageView {
-    objc_setAssociatedObject(self, &addStringKey, imageView, OBJC_ASSOCIATION_COPY_NONATOMIC);
+// - (void)setImageView:(UIImageView *)imageView {
+//     objc_setAssociatedObject(self, &addStringKey, imageView, OBJC_ASSOCIATION_COPY_NONATOMIC);
+// }
+
+// - (UIImageView *)imageView {
+//     return objc_getAssociatedObject(self, &addStringKey);
+// }
+
+/**
+ 感觉这个方法更巧妙一些，这样就不用定义那个不变的key了。。。
+*/
+- (UIImageView *)imageView {
+ //注意第二个参数哈。。
+   return objc_getAssociatedObject(self, _cmd);
 }
 
-- (UIImageView *)imageView {
-    return objc_getAssociatedObject(self, &addStringKey);
+- (void)setImageView:(UIImageView *)imageView {
+ //注意第二个参数哈。。
+   objc_setAssociatedObject(self, @selector(imageView), imageView, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 @end
